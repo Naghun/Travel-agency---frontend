@@ -1,121 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
+import './styles/main.scss'
+import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom'
+
+// glavne stranice
+import PocetnaStranica from './pages/PocetnaStranica/PocetnaStranica';
+import Programi from './pages/Programi/Programi'
+import BazaPutnika from './pages/BazaPutnika/BazaPutnika';
+import Liste from './pages/Liste/Liste';
+import Rezervacije from './pages/Rezervacije/Rezervacije';
+
+// sistem stranice
+import Tim from './pages/Sistem/Tim/Tim';
+import DizajnPDFova from './pages/Sistem/Dizajn PDFova/DizajnPDFova';
+import Postavke from './pages/Sistem/Postavke/Postavke';
+
+// alati stranice
+import Izvjestaji from './pages/Alati/Izvještaji/Izvjestaji';
+import Poruke from './pages/Alati/Poruke/Poruke';
+import OnlinePrijave from './pages/Alati/OnlinePrijave/OnlinePrijave';
+
+// finansije stranice
+import Dugovanja from './pages/Finansije/Dugovanja/Dugovanja';
+import Fakture from './pages/Finansije/Fakture/Fakture';
+import Placanja from './pages/Finansije/Placanja/Placanja';
+import Troskovi from './pages/Finansije/Troskovi/Troskovi';
+
+import Header from './components/Header/Header';
+
+// bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  	return (
+		<div className="App">
+			<Router>
+        <div className="app-layout">
+          <Header />
+          <div className="content-area">
+            <Routes>
+              <Route path='/' element= {<PocetnaStranica />} />
+              <Route path='/programi' element= {<Programi />} />
+              <Route path='/baza-putnika' element= {<BazaPutnika />} />
+              <Route path='/liste' element= {<Liste />} />
+              <Route path='/rezervacije' element= {<Rezervacije />} />
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+              <Route path='/tim' element= {<Tim />} />
+              <Route path='/postavke' element= {<Postavke />} />
+              <Route path='/dizajn-pdfova' element= {<DizajnPDFova />} />
 
-      <div className="ticks"></div>
+              <Route path='/izvjestaji' element= {<Izvjestaji />} />
+              <Route path='/online-prijave' element= {<OnlinePrijave />} />
+              <Route path='/poruke' element= {<Poruke />} />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+              <Route path='/dugovanja' element= {<Dugovanja />} />
+              <Route path='/fakture' element= {<Fakture />} />
+              <Route path='/placanja' element= {<Placanja />} />
+              <Route path='/troskovi' element= {<Troskovi />} />
+            </Routes>
+          </div>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+			</Router>
+		</div>
+  );
 }
 
-export default App
+export default App;

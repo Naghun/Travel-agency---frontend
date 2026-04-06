@@ -1,0 +1,17 @@
+@use '../../styles/main' as *;
+
+.header {
+    .logo {
+        font-family: $font-family-primary;
+        color: $font-color;
+        font-size: 24px;
+    }
+    nav {
+        .nav-list {
+            list-style: none;
+            li {
+
+            }
+        }
+    }
+}
