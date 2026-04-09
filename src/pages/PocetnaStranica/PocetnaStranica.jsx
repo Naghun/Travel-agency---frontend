@@ -2,7 +2,9 @@ import React from 'react'
 
 function PocetnaStranica() {
   return (
-    <div>PocetnaStranica</div>
+    <div>
+      <h2>Početna</h2>
+    </div>
   )
 }
 

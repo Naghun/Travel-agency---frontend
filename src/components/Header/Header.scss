@@ -1,16 +1,103 @@
 @use '../../styles/main' as *;
 
 .header {
+    padding: 0px;
+    overflow-y: auto;
+    height: 100dvh;
+    scrollbar-width: none;
     .logo {
         font-family: $font-family-primary;
-        color: $font-color;
-        font-size: 24px;
+        color: $navbar-active-font;
+        font-size: 22px;
+        padding: 20px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 10px;
+        img {
+            width: 60px;
+        }
     }
     nav {
+        width: 100%;
         .nav-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+            width: 100%;
             list-style: none;
-            li {
-
+            padding-left: 0px;
+            cursor: pointer;
+            gap: 0px;
+            .nav-section {
+                width: 100%;
+                align-self: center;
+                border-top: 1px solid rgba(196, 196, 196, 0.473);
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                padding: 10px 10px;
+                span {
+                    font-family: $font-family-primary;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: rgba(112, 112, 112, 0.616);
+                }
+            }
+            .list-item {
+                width: 100%;
+                padding: 0px 0px;
+                display: flex;
+                justify-content: start;
+                align-items: start;
+                transition: 2s ease all;
+                a {
+                    width: 100%;
+                    text-decoration: none;
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    height: 100%;
+                    gap: 10px;
+                    transition: 0.4s ease all;
+                    .selected-indicator {
+                        width: 1.5%;
+                        height: 50px;
+                        background-color: transparent;
+                        transition: 0.4s ease all;
+                    }
+                    .list-content {
+                        font-family: $font-family-primary;
+                        width: 98.5%;
+                        display: flex;
+                        justify-content: start;
+                        align-items: center;
+                        gap: 10px;
+                        span {
+                            color: $font-color;
+                            font-weight: 500;
+                            letter-spacing: 0.3px;
+                            font-size: 14px;
+                        }
+                        svg {
+                            font-size: 18px;
+                            color: $font-color;
+                        }
+                    }
+                    &.active, &:hover {
+                        background-color: $navbar-active-bg;
+                        .selected-indicator {
+                            background-color: $navbar-active-font;
+                        }
+                        .list-content {
+                            span, svg {
+                                color: $navbar-active-font;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

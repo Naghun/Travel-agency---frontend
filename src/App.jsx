@@ -29,6 +29,7 @@ import Header from './components/Header/Header';
 
 // bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
+import HorizontalHeader from './components/HorizontalHeader/HorizontalHeader';
 
 
 
@@ -39,26 +40,29 @@ function App() {
         <div className="app-layout">
           <Header />
           <div className="content-area">
-            <Routes>
-              <Route path='/' element= {<PocetnaStranica />} />
-              <Route path='/programi' element= {<Programi />} />
-              <Route path='/baza-putnika' element= {<BazaPutnika />} />
-              <Route path='/liste' element= {<Liste />} />
-              <Route path='/rezervacije' element= {<Rezervacije />} />
+            <HorizontalHeader />
+            <div className="main-content">
+              <Routes>
+                <Route path='/' element= {<PocetnaStranica />} />
+                <Route path='/programi' element= {<Programi />} />
+                <Route path='/baza-putnika' element= {<BazaPutnika />} />
+                <Route path='/liste' element= {<Liste />} />
+                <Route path='/rezervacije' element= {<Rezervacije />} />
 
-              <Route path='/tim' element= {<Tim />} />
-              <Route path='/postavke' element= {<Postavke />} />
-              <Route path='/dizajn-pdfova' element= {<DizajnPDFova />} />
+                <Route path='/tim' element= {<Tim />} />
+                <Route path='/postavke' element= {<Postavke />} />
+                <Route path='/dizajn-pdfova' element= {<DizajnPDFova />} />
 
-              <Route path='/izvjestaji' element= {<Izvjestaji />} />
-              <Route path='/online-prijave' element= {<OnlinePrijave />} />
-              <Route path='/poruke' element= {<Poruke />} />
+                <Route path='/izvjestaji' element= {<Izvjestaji />} />
+                <Route path='/online-prijave' element= {<OnlinePrijave />} />
+                <Route path='/poruke' element= {<Poruke />} />
 
-              <Route path='/dugovanja' element= {<Dugovanja />} />
-              <Route path='/fakture' element= {<Fakture />} />
-              <Route path='/placanja' element= {<Placanja />} />
-              <Route path='/troskovi' element= {<Troskovi />} />
-            </Routes>
+                <Route path='/dugovanja' element= {<Dugovanja />} />
+                <Route path='/fakture' element= {<Fakture />} />
+                <Route path='/placanja' element= {<Placanja />} />
+                <Route path='/troskovi' element= {<Troskovi />} />
+              </Routes>
+            </div>
           </div>
         </div>
 			</Router>
