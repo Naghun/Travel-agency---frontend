@@ -1,0 +1,57 @@
+@use '../../styles/main' as *;
+
+
+.dashboard-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    padding: 10px;
+    .top-container {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); // tačno 3 u redu
+        gap: 20px;
+        padding: 10px;
+        .card {
+            width: 100%;
+            height: 120px;
+            border: 2px solid white;
+            border-radius: 8px;
+            background-color: white;
+            color: black;
+            padding: 10px 15px;
+            transition: 0.4s ease all;
+            box-shadow: $shadow;
+            cursor: pointer;
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: $shadow-intense;
+            }
+        }
+    }
+    .recent-upcoming-container {
+        width: 100%;
+        min-height: 200px;
+        padding: 10px;
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        gap: 20px;
+        .recent-container, .upcoming-container {
+            background-color: white;
+            width: 50%;
+            min-height: 200px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: $shadow;
+            transition: 0.4s ease all;
+            cursor: pointer;
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: $shadow-intense;
+            }
+        }
+    }
+}

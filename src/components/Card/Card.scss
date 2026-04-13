@@ -1,0 +1,70 @@
+@use '../../styles/main' as *;
+
+.card {
+    .card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .card-title {
+            font-family: $font-family-primary;
+            font-size: 18px;
+            font-weight: 400;
+        }
+        .card-icon {
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            border: none;
+            border-radius: 50%;
+            background-color: rgba(14, 46, 230, 0.781);
+            svg {
+                color: white;
+            }
+        }
+        .card-icon {
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            border-radius: 50%;
+            svg {
+            color: white;
+            }
+        }
+
+        &.passengers .card-icon {
+            background-color: #4da6ff; // svijetlo plava
+        }
+
+        &.programs .card-icon {
+            background-color: #4caf50; // zelena
+        }
+
+        &.profit .card-icon {
+            background-color: #2ecc71; // svijetlo zelena
+        }
+
+        &.expenses .card-icon {
+            background-color: #e74c3c; // crvena
+        }
+
+        &.invoices .card-icon {
+            background-color: #f39c12; // narandžasta
+        }
+
+        &.reservations .card-icon {
+            background-color: #9b59b6; // ljubičasta
+        }
+    }
+    .card-content {
+        .card-value {
+            font-family: $font-family-primary;
+            font-weight: 600;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+    }
+}

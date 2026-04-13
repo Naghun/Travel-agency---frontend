@@ -1,0 +1,33 @@
+@use '../../styles/main' as *;
+
+.recent-upcoming {
+    padding: 20px;
+    .top-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(231, 231, 231, 0.5);
+        padding-bottom: 20px;
+        .title {
+            margin-bottom: 0px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 5px 20px;
+            background-color: $bg-color;
+            border: none;
+            border-radius: 8px;
+            transition: 0.4s ease all;
+            &:hover {
+                background-color: $navbar-active-font; // svijetlo zelena
+                color: $white-color;
+            }
+        }
+    }
+    .bottom-container {
+        padding: 20px 10px;
+    }
+}

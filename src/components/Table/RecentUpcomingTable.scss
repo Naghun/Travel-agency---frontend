@@ -1,0 +1,41 @@
+@use '../../styles/main' as *;
+
+.recent-upcoming-table {
+  background: #fff;
+  border-radius: 8px;
+
+  table {
+        width: 100%;
+        border-collapse: collapse;
+
+        tr {
+            transition: 0.3s ease all;
+        }
+
+        th, td {
+        text-align: left;
+        padding: 12px 16px;
+        font-family: $font-family-primary;
+        font-size: 14px;
+        }
+
+        th {
+            font-weight: 600;
+            color: #333;
+            border-bottom: 1px solid rgba(219, 219, 219, 0.664);
+        }
+
+        td {
+            border-bottom: 1px solid rgba(233, 233, 233, 0.534);
+            color: #555;
+        }
+
+        tr:last-child td {
+            border-bottom: none; // da zadnji red nema liniju
+        }
+
+        tr:hover {
+            background-color: rgba(224, 224, 224, 0.178); // lagani hover efekat
+        }
+  }
+}
