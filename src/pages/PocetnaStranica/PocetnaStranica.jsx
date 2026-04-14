@@ -2,6 +2,9 @@ import React from "react";
 import './PocetnaStranica.scss'
 import Card from "../../components/Card/Card.jsx";
 import RecentUpcoming from "../../features/RecentUpcoming/RecentUpcoming.jsx";
+import RecentUpcomingTable from "../../components/Table/RecentUpcomingTable.jsx";
+import MonthlyChart from "../../components/Charts/MonthlyChart/MonthlyChart.jsx";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers, faMoneyBill, faFileInvoice, faPlaneDeparture, faClipboardList, faArrowTrendDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -25,10 +28,26 @@ function PocetnaStranica() {
       </div>
       <div className="recent-upcoming-container">
         <div className="recent-container">
-          <RecentUpcoming title="Nadolazeći programi" />
+          <RecentUpcoming title="Nadolazeći programi" showButton={true}>
+            <RecentUpcomingTable />
+          </RecentUpcoming>
         </div>
         <div className="upcoming-container">
-          <RecentUpcoming title="Nedavne rezervacija" />
+          <RecentUpcoming title="Nedavne rezervacije" showButton={true}>
+            <RecentUpcomingTable />
+          </RecentUpcoming>
+        </div>
+      </div>
+      <div className="monthly-stats-container">
+        <div className="monthly-container">
+          <RecentUpcoming title="Mjesečni podaci">
+            <MonthlyChart />
+          </RecentUpcoming>
+        </div>
+        <div className="stats-container">
+          <RecentUpcoming title="Statusi rezervacija" showButton={true}>
+            <RecentUpcomingTable />
+          </RecentUpcoming>
         </div>
       </div>
     </div>
