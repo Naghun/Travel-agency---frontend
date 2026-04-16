@@ -1,0 +1,10 @@
+@use '../../styles/main' as *;
+
+.one-column-data-container {
+    padding: 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
+    height: auto;
+    background-color: $bg-color;
+}

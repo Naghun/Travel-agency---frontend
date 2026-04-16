@@ -1,0 +1,35 @@
+@use '../../styles/main' as *;
+
+.page-header {
+    width: 100%;
+    height: 8dvh;
+    padding: 10px 0px 10px 10px;
+    border-bottom: 1px solid rgba(207, 207, 207, 0.425);
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    .page-title {
+        font-size: 24px;
+        font-weight: 600;
+        font-family: $font-family-primary;
+    }
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        padding: 8px 20px;
+        background-color: $bg-color;
+        border: none;
+        border-radius: 8px;
+        transition: 0.4s ease all;
+        font-size: 14px;
+        cursor: pointer;
+        &:hover {
+            background-color: $navbar-active-font; // svijetlo zelena
+            color: $white-color;
+            transform: translateY(-2px);
+            box-shadow: $shadow-intense;
+        }
+    }
+}

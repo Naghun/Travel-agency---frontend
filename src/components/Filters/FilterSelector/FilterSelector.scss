@@ -1,0 +1,38 @@
+@use '../../../styles/main.scss' as *;
+
+.filter-selector-container {
+  width: 100%;
+  font-family: $font-family-primary;
+  font-size: 16px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+
+  span {
+    width: 15%; // ovo ostaje fiksno
+  }
+
+  .filters {
+    display: flex;
+    flex: 1; // zauzima ostatak prostora
+    gap: 10px;
+
+    .filter-button {
+      flex: 1; // svako dugme zauzima jednaku širinu
+      padding: 5px 20px;
+      font-size: 16px;
+      font-family: $font-family-primary;
+      border: 1px solid $navbar-active-font;
+      border-radius: 8px;
+      transition: 0.4s ease all;
+      background-color: transparent;
+
+      &:hover,
+      &:active {
+        background-color: $navbar-active-font;
+        color: $white-color;
+      }
+    }
+  }
+}

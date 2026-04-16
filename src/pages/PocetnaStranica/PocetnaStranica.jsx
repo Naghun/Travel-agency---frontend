@@ -4,7 +4,6 @@ import Card from "../../components/Card/Card.jsx";
 import RecentUpcoming from "../../features/RecentUpcoming/RecentUpcoming.jsx";
 import RecentUpcomingTable from "../../components/Table/RecentUpcomingTable.jsx";
 import MonthlyChart from "../../components/Charts/MonthlyChart/MonthlyChart.jsx";
-import OverallChart from "../../components/Charts/OverallChart/OverallChart.jsx";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers, faMoneyBill, faFileInvoice, faPlaneDeparture, faClipboardList, faArrowTrendDown } from "@fortawesome/free-solid-svg-icons";
@@ -49,11 +48,6 @@ function PocetnaStranica() {
           <RecentUpcoming title="Statusi rezervacija" showButton={true}>
             <RecentUpcomingTable />
           </RecentUpcoming>
-        </div>
-      </div>
-      <div className="total-profit-container">
-        <div className="total-profit">
-          <OverallChart />
         </div>
       </div>
     </div>

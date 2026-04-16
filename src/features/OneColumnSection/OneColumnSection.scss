@@ -1,0 +1,9 @@
+@use '../../styles/main' as *;
+
+.one-column-section-container {
+    padding: 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: $bg-color;
+}
