@@ -1,0 +1,219 @@
+@use '../../styles/main' as *;
+
+.liste-container {
+    padding: 20px 28px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .liste-title {
+        font-family: $font-family-primary;
+        font-size: 24px;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin: 0;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(207, 207, 207, 0.4);
+    }
+
+    // Program selector box
+    .liste-selector-box {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: $shadow;
+        padding: 18px 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+
+        label {
+            font-family: $font-family-primary;
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(74, 94, 122, 0.6);
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        select {
+            width: 340px;
+            padding: 10px 14px;
+            border: 1px solid rgba(207, 207, 207, 0.8);
+            border-radius: 8px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            color: $font-color;
+            background-color: white;
+            outline: none;
+            cursor: pointer;
+            transition: 0.25s ease all;
+            appearance: auto;
+
+            &:focus {
+                border-color: $navbar-active-font;
+                box-shadow: 0 0 0 3px rgba(67, 70, 216, 0.08);
+            }
+        }
+    }
+
+    // Tab buttons
+    .liste-tabs {
+        display: flex;
+        gap: 8px;
+
+        .liste-tab {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.25s ease all;
+            border: 1px solid rgba(207, 207, 207, 0.8);
+            background-color: white;
+            color: $font-color;
+
+            svg { font-size: 14px; }
+
+            &:hover {
+                border-color: $navbar-active-font;
+                color: $navbar-active-font;
+            }
+
+            &.active {
+                background-color: $navbar-active-font;
+                border-color: $navbar-active-font;
+                color: white;
+                box-shadow: 0 2px 8px rgba(67, 70, 216, 0.25);
+            }
+        }
+    }
+
+    // Content box
+    .liste-content-box {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: $shadow;
+        overflow: hidden;
+
+        .liste-content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 24px;
+            border-bottom: 1px solid rgba(207, 207, 207, 0.35);
+
+            h3 {
+                font-family: $font-family-primary;
+                font-size: 16px;
+                font-weight: 600;
+                color: $font-color;
+                margin: 0;
+            }
+
+            .liste-export-btns {
+                display: flex;
+                gap: 8px;
+
+                .export-btn {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    padding: 8px 16px;
+                    border-radius: 8px;
+                    font-family: $font-family-primary;
+                    font-size: 13px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    transition: 0.25s ease all;
+                    border: 1px solid rgba(207, 207, 207, 0.8);
+                    background-color: white;
+                    color: $font-color;
+
+                    svg { font-size: 13px; }
+
+                    &:hover {
+                        border-color: $navbar-active-font;
+                        color: $navbar-active-font;
+                    }
+
+                    &.active {
+                        background-color: $navbar-active-font;
+                        border-color: $navbar-active-font;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+
+    // Table
+    .liste-table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead tr {
+            border-bottom: 1px solid rgba(207, 207, 207, 0.5);
+        }
+
+        th {
+            padding: 14px 20px;
+            text-align: left;
+            font-family: $font-family-primary;
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(74, 94, 122, 0.6);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 14px 20px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            color: $font-color;
+            border-bottom: 1px solid rgba(233, 233, 233, 0.6);
+
+            strong {
+                font-weight: 600;
+                color: #333;
+            }
+        }
+
+        tbody tr:last-child td { border-bottom: none; }
+
+        tbody tr:hover { background-color: rgba(224, 231, 255, 0.12); }
+
+        .no-data {
+            text-align: center;
+            color: rgba(74, 94, 122, 0.5);
+            padding: 40px 20px;
+            font-size: 14px;
+        }
+    }
+
+    .liste-loading {
+        padding: 40px;
+        text-align: center;
+        font-family: $font-family-primary;
+        font-size: 14px;
+        color: rgba(74, 94, 122, 0.6);
+    }
+
+    // Check-in badge
+    .checkin-badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+
+        &.done    { background-color: #e8fff0; color: #1a8a3a; }
+        &.pending { background-color: #fff8e0; color: #9a6f00; }
+    }
+}

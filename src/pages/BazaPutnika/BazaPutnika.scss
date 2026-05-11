@@ -1,0 +1,88 @@
+@use '../../styles/main' as *;
+
+.baza-putnika-container {
+    padding: 0px 20px;
+    width: 100%;
+
+    .bp-search-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 10px 0px;
+        gap: 12px;
+
+        form {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+
+            .bp-search-input {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                flex: 1;
+                max-width: 520px;
+                padding: 10px 14px;
+                background-color: white;
+                border: 1px solid rgba(207, 207, 207, 0.7);
+                border-radius: 8px;
+                box-shadow: $shadow;
+                transition: 0.25s ease all;
+
+                &:focus-within {
+                    border-color: $navbar-active-font;
+                    box-shadow: 0 0 0 3px rgba(67, 70, 216, 0.08);
+                }
+
+                svg {
+                    font-size: 14px;
+                    color: rgba(74, 94, 122, 0.5);
+                    flex-shrink: 0;
+                }
+
+                input {
+                    border: none;
+                    outline: none;
+                    font-family: $font-family-primary;
+                    font-size: 14px;
+                    color: $font-color;
+                    background: transparent;
+                    width: 100%;
+                    &::placeholder { color: rgba(74, 94, 122, 0.4); }
+                }
+            }
+
+            .bp-search-btn, .bp-clear-btn {
+                padding: 10px 20px;
+                border-radius: 8px;
+                font-family: $font-family-primary;
+                font-size: 14px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: 0.25s ease all;
+                border: none;
+            }
+
+            .bp-search-btn {
+                background-color: $navbar-active-font;
+                color: white;
+                &:hover { opacity: 0.85; }
+            }
+
+            .bp-clear-btn {
+                background-color: $bg-color;
+                color: $font-color;
+                border: 1px solid rgba(207, 207, 207, 0.7);
+                &:hover { background-color: rgba(207, 207, 207, 0.3); }
+            }
+        }
+
+        .bp-count {
+            font-family: $font-family-primary;
+            font-size: 13px;
+            color: rgba(74, 94, 122, 0.6);
+            white-space: nowrap;
+        }
+    }
+}

@@ -1,15 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './RecentUpcomingTable.scss';
+import apiClient from "../../api/apiClient.jsx"; // koristi tvoj axios client
 
 function RecentUpcomingTable() {
-  const data = [
-    { id: 1, name: "Program A", date: "2026-04-10", status: "Aktivan" },
-    { id: 2, name: "Program B", date: "2026-04-12", status: "Završeno" },
-    { id: 3, name: "Program C", date: "2026-04-13", status: "Na čekanju" },
-    { id: 4, name: "Program D", date: "2026-04-13", status: "Na čekanju" },
-    { id: 5, name: "Program E", date: "2026-04-13", status: "Na čekanju" },
-    { id: 6, name: "Program F", date: "2026-04-13", status: "Na čekanju" },
-  ];
+  const [programStats, setProgramStats] = useState([]);
+
+  useEffect(() => {
+    const fetchProgramStats = async () => {
+      try {
+        const response = await apiClient.get("/dashboard/program-stats");
+        setProgramStats(response.data);
+      } catch (error) {
+        console.error("Error fetching program stats:", error);
+      }
+    };
+
+    fetchProgramStats();
+  }, []);
+
+  // map status API -> prevedeni nazivi
+  const statusMap = {
+    planned: "Planirano",
+    active: "Aktivno",
+    completed: "Završeno",
+    postponed: "Odgođeno",
+    cancelled: "Otkazano"
+  };
+
+  // format datuma: day/month – day/month – year
+  const formatDateRange = (start, end) => {
+    if (!start || !end) return "";
+    const s = new Date(start);
+    const e = new Date(end);
+
+    const dayMonthStart = `${s.getDate()}/${s.getMonth() + 1}`;
+    const dayMonthEnd = `${e.getDate()}/${e.getMonth() + 1}`;
+    const year = e.getFullYear();
+
+    return `${dayMonthStart} – ${dayMonthEnd}  ${year}`;
+  };
 
   return (
     <div className="recent-upcoming-table">
@@ -18,17 +47,21 @@ function RecentUpcomingTable() {
           <tr>
             <th>ID</th>
             <th>Naziv</th>
+            <th>Destinacija</th>
             <th>Datum</th>
             <th>Status</th>
+            <th>Rezervacije</th>
           </tr>
         </thead>
         <tbody>
-          {data.map(item => (
+          {programStats.map(item => (
             <tr key={item.id}>
               <td>{item.id}</td>
               <td>{item.name}</td>
-              <td>{item.date}</td>
-              <td>{item.status}</td>
+              <td>{item.destination}</td>
+              <td>{formatDateRange(item.start_date, item.end_date)}</td>
+              <td>{statusMap[item.status] || item.status}</td>
+              <td>{`${item.confirmed_count} / ${item.reservations_count}`}</td>
             </tr>
           ))}
         </tbody>

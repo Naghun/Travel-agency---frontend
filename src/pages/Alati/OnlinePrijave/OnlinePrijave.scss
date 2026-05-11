@@ -1,0 +1,434 @@
+@use '../../../styles/main' as *;
+
+.online-prijave-container {
+    padding: 0px 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    .op-page-header {
+        padding: 16px 10px 0;
+        h2 {
+            font-family: $font-family-primary;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin: 0;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(207, 207, 207, 0.4);
+        }
+    }
+
+    // ── Tabs ──
+    .op-tabs {
+        display: flex;
+        gap: 4px;
+        padding: 16px 10px 0;
+
+        button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            border: 1px solid rgba(207, 207, 207, 0.7);
+            border-radius: 8px;
+            background-color: white;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            font-weight: 500;
+            color: $font-color;
+            cursor: pointer;
+            transition: 0.2s ease;
+
+            &:hover { border-color: $navbar-active-font; color: $navbar-active-font; }
+
+            &.active {
+                background-color: $navbar-active-font;
+                border-color: $navbar-active-font;
+                color: white;
+            }
+
+            .op-badge {
+                background-color: #ff4444;
+                color: white;
+                border-radius: 20px;
+                font-size: 11px;
+                font-weight: 700;
+                padding: 2px 7px;
+            }
+        }
+    }
+
+    // ── Section ──
+    .op-section {
+        padding: 16px 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    // ── Filters ──
+    .op-filters {
+        display: flex;
+        gap: 12px;
+        padding: 14px 16px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: $shadow;
+
+        select {
+            padding: 9px 14px;
+            border: 1px solid rgba(207, 207, 207, 0.7);
+            border-radius: 8px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            color: $font-color;
+            background-color: white;
+            outline: none;
+            cursor: pointer;
+            min-width: 200px;
+            transition: 0.2s ease;
+            &:focus { border-color: $navbar-active-font; }
+        }
+    }
+
+    // ── Linkovi header ──
+    .op-linkovi-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .op-linkovi-desc {
+            font-family: $font-family-primary;
+            font-size: 14px;
+            color: rgba(74, 94, 122, 0.7);
+            margin: 0;
+        }
+
+        .op-create-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: $navbar-active-font;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s ease;
+            &:hover { opacity: 0.85; }
+        }
+    }
+
+    // ── Table ──
+    .op-table-box {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: $shadow;
+        overflow-x: auto;
+    }
+
+    .op-table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead tr { border-bottom: 2px solid rgba(207, 207, 207, 0.35); }
+
+        th {
+            padding: 13px 16px;
+            text-align: left;
+            font-family: $font-family-primary;
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(74, 94, 122, 0.6);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 14px 16px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            color: $font-color;
+            border-bottom: 1px solid rgba(233, 233, 233, 0.7);
+            vertical-align: middle;
+        }
+
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: rgba(224, 231, 255, 0.07); }
+
+        .op-empty {
+            text-align: center;
+            padding: 48px;
+            color: rgba(74, 94, 122, 0.45);
+            font-size: 14px;
+        }
+    }
+
+    // ── Status badges ──
+    .op-status-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+
+        &.badge--pending  { background-color: #fff8e0; color: #9a6f00; }
+        &.badge--approved { background-color: #e8fff0; color: #1a8a3a; }
+        &.badge--rejected { background-color: #fff0f0; color: #cc2200; }
+    }
+
+    // ── Contact cell ──
+    .op-contact {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        font-size: 13px;
+        .op-phone { color: rgba(74, 94, 122, 0.6); font-size: 12px; }
+    }
+
+    // ── Copy button ──
+    .op-copy-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border: 1px solid rgba(207, 207, 207, 0.7);
+        border-radius: 6px;
+        background-color: white;
+        font-family: $font-family-primary;
+        font-size: 12px;
+        color: $font-color;
+        cursor: pointer;
+        transition: 0.2s ease;
+        white-space: nowrap;
+
+        &:hover { border-color: $navbar-active-font; color: $navbar-active-font; }
+        &.copied { border-color: #1a8a3a; color: #1a8a3a; background-color: #e8fff0; }
+    }
+
+    // ── Row actions ──
+    .op-row-actions {
+        display: flex;
+        gap: 6px;
+
+        .op-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: 0.2s ease;
+
+            &.op-btn--view      { background-color: #f0f0f5; color: $font-color; &:hover { background-color: $navbar-active-bg; color: $navbar-active-font; } }
+            &.op-btn--approve   { background-color: #e8fff0; color: #1a8a3a; &:hover { background-color: #1a8a3a; color: white; } }
+            &.op-btn--reject    { background-color: #fff0f0; color: #cc2200; &:hover { background-color: #cc2200; color: white; } }
+            &.op-btn--toggle-on { background-color: #e8fff0; color: #1a8a3a; font-size: 18px; &:hover { background-color: #1a8a3a; color: white; } }
+            &.op-btn--toggle-off{ background-color: #f0f0f5; color: $font-color; font-size: 18px; &:hover { background-color: $navbar-active-bg; color: $navbar-active-font; } }
+        }
+    }
+
+    // ── Approve/Reject/Detail modals ──
+    .op-approve-modal {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        font-family: $font-family-primary;
+
+        p { font-size: 14px; color: $font-color; margin: 0; }
+
+        .op-reg-summary {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            padding: 12px 16px;
+            background-color: $navbar-active-bg;
+            border-radius: 8px;
+            strong { font-size: 15px; color: $navbar-active-font; }
+            span   { font-size: 13px; color: $font-color; }
+        }
+
+        .op-approve-note {
+            font-size: 13px;
+            color: rgba(74, 94, 122, 0.7);
+            background-color: $bg-color;
+            padding: 10px 14px;
+            border-radius: 8px;
+        }
+
+        .op-error {
+            padding: 10px 14px;
+            background-color: #fff0f0;
+            border: 1px solid #ffcccc;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #cc0000;
+        }
+
+        .op-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(207, 207, 207, 0.4);
+
+            button {
+                padding: 10px 24px;
+                border-radius: 8px;
+                font-family: $font-family-primary;
+                font-size: 14px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: 0.2s ease;
+                border: none;
+
+                &.btn-cancel  { background-color: $bg-color; color: $font-color; border: 1px solid rgba(207,207,207,0.7); &:hover { background-color: rgba(207,207,207,0.3); } }
+                &.btn-approve { background-color: #1a8a3a; color: white; &:hover { opacity: 0.85; } &:disabled { opacity: 0.6; cursor: not-allowed; } }
+                &.btn-reject  { background-color: #cc2200; color: white; &:hover { opacity: 0.85; } &:disabled { opacity: 0.6; cursor: not-allowed; } }
+            }
+        }
+    }
+
+    // ── Detail modal ──
+    .op-detail {
+        font-family: $font-family-primary;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+
+        .op-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+
+            > div {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                span:last-child { font-size: 14px; color: $font-color; font-weight: 500; }
+            }
+        }
+
+        .op-detail-row {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            p { font-size: 13px; color: $font-color; margin: 0; line-height: 1.5; }
+        }
+
+        .op-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(74, 94, 122, 0.55);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .op-detail-meta {
+            display: flex;
+            gap: 16px;
+            padding: 10px 14px;
+            background-color: $bg-color;
+            border-radius: 8px;
+            font-size: 12px;
+            color: rgba(74, 94, 122, 0.6);
+        }
+    }
+
+    // ── Create link form ──
+    .op-create-link-form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        font-family: $font-family-primary;
+
+        .op-error {
+            padding: 10px 14px;
+            background-color: #fff0f0;
+            border: 1px solid #ffcccc;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #cc0000;
+        }
+
+        .op-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            &.required label::after { content: ' *'; color: #cc0000; }
+
+            label { font-size: 12px; font-weight: 500; color: $font-color; }
+
+            input, select, textarea {
+                padding: 9px 13px;
+                border: 1px solid rgba(207, 207, 207, 0.7);
+                border-radius: 8px;
+                font-family: $font-family-primary;
+                font-size: 13px;
+                color: $font-color;
+                background-color: $bg-color;
+                outline: none;
+                transition: 0.2s ease;
+                resize: vertical;
+                &:focus { border-color: $navbar-active-font; background-color: white; }
+                &::placeholder { color: rgba(74, 94, 122, 0.4); }
+            }
+            textarea { min-height: 60px; }
+        }
+
+        .op-form-row {
+            display: flex;
+            gap: 12px;
+            .op-form-group { flex: 1; }
+        }
+
+        .op-checkboxes {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            label {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 13px;
+                color: $font-color;
+                cursor: pointer;
+
+                input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; }
+            }
+        }
+
+        .op-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(207, 207, 207, 0.4);
+
+            button {
+                padding: 10px 24px;
+                border-radius: 8px;
+                font-family: $font-family-primary;
+                font-size: 14px;
+                font-weight: 500;
+                cursor: pointer;
+                border: none;
+                transition: 0.2s ease;
+
+                &.btn-cancel  { background-color: $bg-color; color: $font-color; border: 1px solid rgba(207,207,207,0.7); &:hover { background-color: rgba(207,207,207,0.3); } }
+                &.btn-approve { background-color: $navbar-active-font; color: white; &:hover { opacity: 0.85; } &:disabled { opacity: 0.6; cursor: not-allowed; } }
+            }
+        }
+    }
+}

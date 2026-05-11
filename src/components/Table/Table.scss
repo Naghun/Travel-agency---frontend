@@ -1,6 +1,7 @@
 @use '../../styles/main.scss' as *;
 
 .standard-wide-table {
+    position: relative;
     table {
         width: 100%;
         border-collapse: collapse;
@@ -34,6 +35,115 @@
 
         tr:hover {
             background-color: rgba(224, 224, 224, 0.178); // lagani hover efekat
+        }
+        .tr-row-actions {
+        display: flex;
+        gap: 6px;
+
+        .tr-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            transition: 0.2s ease;
+
+            // varijante
+            &.tr-btn--view {
+                background-color: #f0f0f5;
+                color: $font-color;
+
+                &:hover {
+                    background-color: $navbar-active-bg;
+                    color: $navbar-active-font;
+                }
+            }
+
+            &.tr-btn--edit {
+                background-color: #e8f4ff;
+                color: #1a5a8a;
+
+                &:hover {
+                    background-color: #1a5a8a;
+                    color: white;
+                }
+            }
+
+            &.tr-btn--delete {
+                background-color: #fff0f0;
+                color: #cc2200;
+
+                &:hover {
+                    background-color: #cc2200;
+                    color: white;
+                }
+            }
+
+            // ikonica unutar dugmeta
+            svg {
+                font-size: 18px;
+                transition: 0.2s ease;
+            }
+        }
+        }
+
+    }
+    .action-pop-up-container {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+        width: 880px;
+        max-width: 95vw;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        animation: slideUp 0.25s ease;
+        position: fixed;
+        padding: 28px 24px;
+        border: none;
+        border-radius: 12px;
+        top: 5%;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s ease all;
+        overflow-y: auto;
+        z-index: 100;
+
+        &.active {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        h4 {
+            font-family: $font-family-primary;
+            font-size: 17px;
+            font-weight: 600;
+            color: $font-color;
+            margin: 0 0 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(207, 207, 207, 0.4);
+        }
+
+        .popup-content {
+            .close-icon {
+                position: absolute;
+                top: 18px;
+                right: 20px;
+                cursor: pointer;
+                transition: 0.3s ease all;
+                font-size: 18px;
+                color: $font-color;
+                &:hover {
+                    color: $navbar-active-font;
+                }
+            }
         }
     }
 }

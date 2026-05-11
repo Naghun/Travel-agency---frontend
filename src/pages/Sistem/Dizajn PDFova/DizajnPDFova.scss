@@ -1,0 +1,202 @@
+@use '../../../styles/main' as *;
+
+.dizajn-pdf-container {
+    padding: 0px 20px;
+    width: 100%;
+
+    .pdf-body {
+        display: flex;
+        gap: 20px;
+        padding: 10px;
+        align-items: flex-start;
+
+        .pdf-sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: $shadow;
+            padding: 20px;
+
+            h5 {
+                font-family: $font-family-primary;
+                font-size: 14px;
+                font-weight: 600;
+                color: $font-color;
+                margin-bottom: 12px;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin-bottom: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+
+                li {
+                    padding: 8px 14px;
+                    border-radius: 8px;
+                    font-family: $font-family-primary;
+                    font-size: 14px;
+                    color: $font-color;
+                    cursor: pointer;
+                    transition: 0.3s ease all;
+
+                    &:hover, &.active {
+                        background-color: $navbar-active-bg;
+                        color: $navbar-active-font;
+                        font-weight: 500;
+                    }
+                }
+            }
+
+            .template-form {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                border-top: 1px solid rgba(207, 207, 207, 0.4);
+                padding-top: 16px;
+
+                .form-group {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+
+                    &.checkbox-group {
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 8px;
+                    }
+
+                    label {
+                        font-family: $font-family-primary;
+                        font-size: 12px;
+                        font-weight: 500;
+                        color: $font-color;
+                    }
+
+                    input[type="text"], input:not([type="checkbox"]):not([type="color"]) {
+                        padding: 8px 12px;
+                        border: 1px solid rgba(207, 207, 207, 0.6);
+                        border-radius: 6px;
+                        font-family: $font-family-primary;
+                        font-size: 13px;
+                        background-color: $bg-color;
+                        outline: none;
+                        &:focus { border-color: $navbar-active-font; background-color: white; }
+                    }
+
+                    input[type="color"] {
+                        width: 40px;
+                        height: 32px;
+                        border: 1px solid rgba(207, 207, 207, 0.6);
+                        border-radius: 6px;
+                        cursor: pointer;
+                        padding: 2px;
+                    }
+                }
+
+                .save-btn {
+                    padding: 10px;
+                    background-color: $navbar-active-font;
+                    color: white;
+                    border: none;
+                    border-radius: 8px;
+                    font-family: $font-family-primary;
+                    font-size: 14px;
+                    cursor: pointer;
+                    transition: 0.3s ease all;
+                    &:hover { opacity: 0.85; }
+                }
+            }
+        }
+
+        .pdf-preview {
+            flex: 1;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: $shadow;
+            padding: 20px;
+
+            h5 {
+                font-family: $font-family-primary;
+                font-size: 14px;
+                font-weight: 600;
+                color: $font-color;
+                margin-bottom: 16px;
+            }
+
+            .pdf-page {
+                border: 1px solid rgba(207, 207, 207, 0.5);
+                border-radius: 4px;
+                padding: 30px;
+                min-height: 500px;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                background-color: #fff;
+
+                .pdf-logo-placeholder {
+                    width: 60px;
+                    height: 40px;
+                    background-color: $navbar-active-bg;
+                    border-radius: 4px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 11px;
+                    font-weight: 600;
+                    color: $navbar-active-font;
+                }
+
+                .pdf-header {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2px;
+                    font-family: $font-family-primary;
+
+                    strong { font-size: 16px; }
+                    span { font-size: 12px; color: $font-color; }
+                }
+
+                hr { border-color: rgba(207, 207, 207, 0.4); }
+
+                .pdf-title {
+                    font-family: $font-family-primary;
+                    font-size: 15px;
+                    font-weight: 600;
+                    padding-left: 10px;
+                    border-left: 3px solid;
+                    color: $font-color;
+                }
+
+                .pdf-content-placeholder {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    margin-top: 10px;
+
+                    .placeholder-row {
+                        height: 12px;
+                        background-color: rgba(207, 207, 207, 0.3);
+                        border-radius: 4px;
+                        width: 100%;
+
+                        &.short { width: 60%; }
+                    }
+                }
+
+                .pdf-footer {
+                    margin-top: auto;
+                    padding-top: 16px;
+                    border-top: 1px solid rgba(207, 207, 207, 0.4);
+                    font-family: $font-family-primary;
+                    font-size: 12px;
+                    color: $font-color;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,114 @@
+@use '../../styles/main' as *;
+
+.rsd-loading {
+    font-family: $font-family-primary;
+    font-size: 14px;
+    color: $font-color;
+    padding: 10px;
+}
+
+.reservation-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-family: $font-family-primary;
+
+    .rsd-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        h3 { font-size: 18px; font-weight: 600; color: $font-color; margin: 0; }
+        .rsd-program { font-size: 13px; color: rgba(74,94,122,0.7); display: block; margin-top: 2px; }
+    }
+
+    .rsd-status {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        white-space: nowrap;
+        &--pending   { background-color: #fff8e0; color: #9a6f00; }
+        &--confirmed { background-color: #e8fff0; color: #1a8a3a; }
+        &--cancelled { background-color: #fff0f0; color: #cc2200; }
+        &--completed { background-color: #f0f0f0; color: #555; }
+    }
+
+    .rsd-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .rsd-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        span:last-child { font-size: 14px; color: $font-color; font-weight: 500; }
+    }
+
+    .rsd-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: rgba(74, 94, 122, 0.55);
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+    }
+
+    .rsd-section {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        p { font-size: 13px; color: $font-color; line-height: 1.5; margin: 0; }
+    }
+
+    .rsd-finances, .rsd-services, .rsd-payments {
+        background-color: $bg-color;
+        border-radius: 8px;
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        h5 { font-size: 13px; font-weight: 600; color: $font-color; margin: 0 0 4px; }
+    }
+
+    .rsd-finance-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        color: $font-color;
+        &.border-top { border-top: 1px solid rgba(207,207,207,0.4); padding-top: 8px; }
+        .green  { color: #1a8a3a; }
+        .orange { color: #9a6f00; }
+    }
+
+    .rsd-service-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        color: $font-color;
+        padding: 6px 0;
+        border-bottom: 1px solid rgba(207,207,207,0.3);
+        &:last-child { border-bottom: none; }
+    }
+
+    .rsd-payment-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        color: $font-color;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(207,207,207,0.3);
+        &:last-child { border-bottom: none; }
+
+        .rsd-payment-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .rsd-method { font-size: 12px; color: rgba(74,94,122,0.6); }
+        .rsd-ref    { font-size: 11px; color: rgba(74,94,122,0.5); }
+        .green { color: #1a8a3a; }
+    }
+}

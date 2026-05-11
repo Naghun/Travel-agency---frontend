@@ -1,0 +1,251 @@
+@use '../../styles/main' as *;
+
+.rezervacije-container {
+    padding: 0px 20px;
+    width: 100%;
+
+    // --- Filters ---
+    .rez-filters {
+        display: flex;
+        gap: 12px;
+        padding: 16px 10px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: $shadow;
+        margin: 16px 0;
+
+        select {
+            padding: 9px 14px;
+            border: 1px solid rgba(207, 207, 207, 0.7);
+            border-radius: 8px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            color: $font-color;
+            background-color: white;
+            outline: none;
+            cursor: pointer;
+            min-width: 200px;
+            transition: 0.2s ease;
+
+            &:focus {
+                border-color: $navbar-active-font;
+                box-shadow: 0 0 0 3px rgba(67, 70, 216, 0.08);
+            }
+        }
+    }
+
+    // --- Table box ---
+    .rez-table-box {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: $shadow;
+        overflow-x: auto;
+    }
+
+    .rez-table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead tr {
+            border-bottom: 2px solid rgba(207, 207, 207, 0.35);
+        }
+
+        th {
+            padding: 14px 16px;
+            text-align: left;
+            font-family: $font-family-primary;
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(74, 94, 122, 0.6);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 14px 16px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            color: $font-color;
+            border-bottom: 1px solid rgba(233, 233, 233, 0.7);
+            vertical-align: middle;
+        }
+
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: rgba(224, 231, 255, 0.08); }
+
+        .rez-empty {
+            text-align: center;
+            padding: 48px;
+            color: rgba(74, 94, 122, 0.45);
+            font-size: 14px;
+        }
+    }
+
+    // --- Putnik ---
+    .rez-putnik-name {
+        font-weight: 600;
+        color: $navbar-active-font;
+        font-size: 14px;
+        cursor: pointer;
+        &:hover { text-decoration: underline; }
+    }
+
+    // --- Program cell ---
+    .rez-program-cell {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        .rez-program-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: $navbar-active-font;
+        }
+        .rez-destination {
+            font-size: 12px;
+            color: rgba(74, 94, 122, 0.6);
+        }
+    }
+
+    // --- Room badge ---
+    .rez-room-badge {
+        display: inline-block;
+        padding: 4px 10px;
+        background-color: #f0f0f5;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        color: $font-color;
+        white-space: nowrap;
+    }
+    .rez-no-room { color: rgba(74, 94, 122, 0.4); }
+
+    // --- Status dropdown ---
+    .status-dropdown-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-family: $font-family-primary;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        border: none;
+        cursor: pointer;
+        transition: 0.2s ease;
+        white-space: nowrap;
+
+        .status-arrow { font-size: 10px; }
+
+        &.status--confirmed { background-color: #e8fff0; color: #1a8a3a; }
+        &.status--pending   { background-color: #fff8e0; color: #9a6f00; }
+        &.status--cancelled { background-color: #fff0f0; color: #cc2200; }
+        &.status--completed { background-color: #f0f0f0; color: #555; }
+
+        &:hover { filter: brightness(0.95); }
+        &:disabled { cursor: not-allowed; opacity: 0.7; }
+    }
+
+    .status-dropdown-list {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        background-color: white;
+        border: 1px solid rgba(207, 207, 207, 0.7);
+        border-radius: 8px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        list-style: none;
+        padding: 4px 0;
+        margin: 0;
+        z-index: 200;
+        min-width: 140px;
+
+        li {
+            padding: 9px 14px;
+            font-family: $font-family-primary;
+            font-size: 13px;
+            color: $font-color;
+            cursor: pointer;
+            transition: 0.2s ease;
+
+            &:hover  { background-color: $navbar-active-bg; color: $navbar-active-font; }
+            &.active { font-weight: 600; color: $navbar-active-font; }
+        }
+    }
+
+    // --- Payment bar ---
+    .payment-cell {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        min-width: 160px;
+
+        .payment-amounts {
+            font-size: 13px;
+            color: $font-color;
+            white-space: nowrap;
+
+            .paid  { font-weight: 600; }
+            .sep   { color: rgba(74, 94, 122, 0.4); }
+            .total { color: rgba(74, 94, 122, 0.5); font-size: 12px; }
+        }
+
+        .payment-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #e8e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+
+            .payment-fill {
+                height: 100%;
+                border-radius: 4px;
+                transition: width 0.4s ease;
+            }
+        }
+    }
+
+    // --- Creator ---
+    .rez-creator {
+        font-size: 13px;
+        color: rgba(74, 94, 122, 0.6);
+    }
+
+    // --- Actions ---
+    .rez-actions {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+
+        button {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: 0.2s ease;
+
+            &.rez-btn-view {
+                background-color: #f0f0f5;
+                color: $font-color;
+                &:hover { background-color: $navbar-active-bg; color: $navbar-active-font; }
+            }
+
+            &.rez-btn-delete {
+                background-color: #ff4444;
+                color: white;
+                &:hover { background-color: #cc0000; }
+            }
+        }
+    }
+}

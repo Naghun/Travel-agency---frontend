@@ -21,6 +21,7 @@
             border: none;
             border-radius: 8px;
             transition: 0.4s ease all;
+            text-decoration: none;
             &:hover {
                 background-color: $navbar-active-font; // svijetlo zelena
                 color: $white-color;

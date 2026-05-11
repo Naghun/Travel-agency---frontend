@@ -1,63 +1,151 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import './Programi.scss'
-import OneColumnSection from '../../features/OneColumnSection/OneColumnSection';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import OneColumnSection from '../../features/OneColumnSection/OneColumnSection'
+import PageHeader from '../../features/PageHeader/PageHeader'
+import OneColumnData from '../../features/OneColumnData/OneColumnData'
+import FilterSelector from '../../components/Filters/FilterSelector/FilterSelector'
+import Table from '../../components/Table/Table'
+import Modal from '../../components/Modal/Modal'
+import ProgramForm from '../../components/Forms/ProgramForm'
+import ProgramDetails from '../../components/Details/ProgramDetails'
+import ProgramDelete from '../../components/Details/ProgramDelete'
+import apiClient from '../../api/apiClient.jsx'
 
-import PageHeader from '../../features/PageHeader/PageHeader';
-import OneColumnData from '../../features/OneColumnData/OneColumnData';
-import FilterSelector from '../../components/Filters/FilterSelector/FilterSelector';
-import Table from '../../components/Table/Table';
+const statusOptions = ["Svi", "Planirano", "Aktivno", "Završeno", "Odgođeno", "Otkazano"]
 
-// primjer dataset-a
-const data = [
-  { naziv: "Putovanje u Rim", destinacija: "Rim", datum: "2026-03-11 – 2026-03-20", cijena: "KM 2,200.00", rezervacije: "3 / 10", status: "Planirano" },
-  { naziv: "Seminar u Sarajevu", destinacija: "Sarajevo", datum: "2026-04-01 – 2026-04-03", cijena: "KM 500.00", rezervacije: "10 / 10", status: "Aktivno" },
-  { naziv: "Ljetovanje u Neumu", destinacija: "Neum", datum: "2026-07-15 – 2026-07-25", cijena: "KM 1,800.00", rezervacije: "0 / 5", status: "Odgođeno" },
-  { naziv: "Konferencija u Berlinu", destinacija: "Berlin", datum: "2026-05-10 – 2026-05-12", cijena: "KM 3,500.00", rezervacije: "5 / 5", status: "Završeno" },
-  { naziv: "Festival u Mostaru", destinacija: "Mostar", datum: "2026-06-01 – 2026-06-05", cijena: "KM 750.00", rezervacije: "2 / 8", status: "Otkazano" },
-];
+const statusMap = {
+  planned: "Planirano", active: "Aktivno",
+  completed: "Završeno", postponed: "Odgođeno", cancelled: "Otkazano",
+}
 
-const statusOptions = ["Svi", "Aktivno", "Planirano", "Završeno", "Odgođeno", "Otkazano"];
-
-const counts = statusOptions.reduce((acc, status) => {
-  if (status === "Svi") {
-    acc[status] = data.length;
-  } else {
-    acc[status] = data.filter(item => item.status.toLowerCase() === status.toLowerCase()).length;
-  }
-  return acc;
-}, {});
-
+const formatDate = (iso) => {
+  if (!iso) return ''
+  return new Date(iso).toLocaleDateString('bs-BA')
+}
 
 function Programi() {
-  const [selectedStatus, setSelectedStatus] = useState("Svi");
+  const [programs, setPrograms] = useState([])
+  const [selectedStatus, setSelectedStatus] = useState("Svi")
+  const [showCreateModal, setShowCreateModal] = useState(false)
+  const [editProgram, setEditProgram] = useState(null)
+  const [deleteProgram, setDeleteProgram] = useState(null)
+
+  const fetchPrograms = useCallback(() => {
+    apiClient.get('/programs')
+      .then(res => setPrograms(res.data))
+      .catch(err => console.error('Error fetching programs:', err))
+  }, [])
+
+  useEffect(() => { fetchPrograms() }, [fetchPrograms])
+
+  const counts = statusOptions.reduce((acc, status) => {
+    if (status === "Svi") acc[status] = programs.length
+    else acc[status] = programs.filter(p => statusMap[p.status] === status).length
+    return acc
+  }, {})
 
   const filteredData = selectedStatus === "Svi"
-    ? data
-    : data.filter(item => item.status.toLowerCase() === selectedStatus.toLowerCase());
+    ? programs
+    : programs.filter(p => statusMap[p.status] === selectedStatus)
+
+  const tableData = filteredData.map(p => ({
+    id: p.id,
+    naziv: p.name,
+    destinacija: p.destination,
+    datum: `${formatDate(p.start_date)} – ${formatDate(p.end_date)}`,
+    cijena: `${p.base_price} ${p.currency || 'KM'}`,
+    rezervacije: `${p.confirmed_reservations ?? 0} / ${p.max_participants ?? '∞'}`,
+    status: statusMap[p.status] || p.status,
+    // raw fields for edit/delete (won't show in table since headers come from first object keys above)
+    _raw: p,
+  }))
+
+  // strip _raw from table headers display by mapping to clean objects
+  const tableDisplay = filteredData.map(p => ({
+    id: p.id,
+    naziv: p.name,
+    destinacija: p.destination,
+    datum: `${formatDate(p.start_date)} – ${formatDate(p.end_date)}`,
+    cijena: `${p.base_price} ${p.currency || 'KM'}`,
+    rezervacije: `${p.confirmed_reservations ?? 0} / ${p.max_participants ?? '∞'}`,
+    status: statusMap[p.status] || p.status,
+  }))
+
+  // find raw program by id from row
+  const getRawProgram = (row) => programs.find(p => p.id === row.id) || row
+
+  const handleCreateSuccess = () => {
+    setShowCreateModal(false)
+    fetchPrograms()
+  }
+
+  const handleEditSuccess = () => {
+    setEditProgram(null)
+    fetchPrograms()
+  }
+
+  const handleDeleteSuccess = () => {
+    setDeleteProgram(null)
+    fetchPrograms()
+  }
 
   return (
-    <div className='programs-page-container'>
-      <PageHeader title="Programi" singular="program"/>
-      
+    <div className="programs-page-container">
+      <PageHeader
+        title="Programi"
+        singular="program"
+        onAdd={() => setShowCreateModal(true)}
+      />
+
       <OneColumnSection>
-        <FilterSelector 
+        <FilterSelector
           filterWord="statusu"
           statusOptions={statusOptions}
           selectedStatus={selectedStatus}
           setSelectedStatus={setSelectedStatus}
           counts={counts}
         />
-
       </OneColumnSection>
-      
+
       <OneColumnData>
-        <Table content={filteredData} />
+        <Table
+          content={tableDisplay}
+          renderView={(row, onClose) => (
+            <ProgramDetails programId={row.id} />
+          )}
+          renderEdit={(row, onClose) => {
+            const raw = getRawProgram(row)
+            return (
+              <ProgramForm
+                initialData={{ ...raw, status_raw: raw.status }}
+                onSuccess={() => { onClose(); fetchPrograms() }}
+                onCancel={onClose}
+              />
+            )
+          }}
+          renderDelete={(row, onClose) => {
+            const raw = getRawProgram(row)
+            return (
+              <ProgramDelete
+                program={raw}
+                onSuccess={() => { onClose(); fetchPrograms() }}
+                onCancel={onClose}
+              />
+            )
+          }}
+        />
       </OneColumnData>
 
+      {showCreateModal && (
+        <Modal title="Dodaj novi program" onClose={() => setShowCreateModal(false)}>
+          <ProgramForm
+            onSuccess={handleCreateSuccess}
+            onCancel={() => setShowCreateModal(false)}
+          />
+        </Modal>
+      )}
     </div>
   )
 }
 
-export default Programi;
+export default Programi

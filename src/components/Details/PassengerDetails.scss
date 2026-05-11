@@ -1,0 +1,130 @@
+@use '../../styles/main' as *;
+
+.psd-loading {
+    font-family: $font-family-primary;
+    font-size: 14px;
+    color: $font-color;
+    padding: 10px;
+}
+
+.passenger-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-family: $font-family-primary;
+
+    .psd-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: $font-color;
+            margin: 0;
+        }
+        .psd-trips {
+            font-size: 12px;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background-color: $navbar-active-bg;
+            color: $navbar-active-font;
+        }
+    }
+
+    .psd-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+    }
+
+    .psd-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        span:last-child {
+            font-size: 14px;
+            color: $font-color;
+            font-weight: 500;
+        }
+    }
+
+    .psd-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: rgba(74, 94, 122, 0.55);
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+    }
+
+    .psd-section {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        p {
+            font-size: 13px;
+            color: $font-color;
+            line-height: 1.5;
+            margin: 0;
+        }
+    }
+
+    .psd-history {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        h5 {
+            font-size: 13px;
+            font-weight: 600;
+            color: $font-color;
+            margin: 0;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(207, 207, 207, 0.4);
+        }
+
+        .psd-trip-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 12px;
+            background-color: $bg-color;
+            border-radius: 8px;
+            gap: 12px;
+
+            .psd-trip-info {
+                display: flex;
+                flex-direction: column;
+                gap: 3px;
+                strong { font-size: 14px; color: #333; }
+                span { font-size: 12px; color: $font-color; }
+            }
+
+            .psd-trip-finance {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 2px;
+                font-size: 12px;
+                color: $font-color;
+                white-space: nowrap;
+                .green  { color: #1a8a3a; }
+                .orange { color: #9a6f00; }
+            }
+        }
+    }
+
+    .psd-status {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 500;
+        width: fit-content;
+        &--pending   { background-color: #fff8e0; color: #9a6f00; }
+        &--confirmed { background-color: #e8fff0; color: #1a8a3a; }
+        &--cancelled { background-color: #fff0f0; color: #cc2200; }
+        &--completed { background-color: #f0f0f0; color: #555; }
+    }
+}

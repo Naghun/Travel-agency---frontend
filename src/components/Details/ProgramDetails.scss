@@ -1,0 +1,233 @@
+@use '../../styles/main' as *;
+
+.pd-loading {
+    font-family: $font-family-primary;
+    font-size: 14px;
+    color: $font-color;
+    padding: 10px;
+}
+
+.program-details {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-family: $font-family-primary;
+
+    .pd-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: $font-color;
+            margin: 0;
+        }
+
+        .pd-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+
+            &--planned   { background-color: #e8f4ff; color: #1a6fbf; }
+            &--active    { background-color: #e8fff0; color: #1a8a3a; }
+            &--completed { background-color: #f0f0f0; color: #555; }
+            &--postponed { background-color: #fff8e0; color: #9a6f00; }
+            &--cancelled { background-color: #fff0f0; color: #cc2200; }
+        }
+    }
+
+    .pd-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .pd-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .pd-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: rgba(74, 94, 122, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+    }
+
+    .pd-value {
+        font-size: 14px;
+        color: $font-color;
+        font-weight: 500;
+    }
+
+    .pd-section {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        p {
+            font-size: 13px;
+            color: $font-color;
+            line-height: 1.5;
+            margin: 0;
+            white-space: pre-wrap;
+        }
+    }
+
+    .pd-finances {
+        background-color: $bg-color;
+        border-radius: 8px;
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        h5 {
+            font-size: 13px;
+            font-weight: 600;
+            color: $font-color;
+            margin: 0 0 4px;
+        }
+
+        .pd-finance-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: $font-color;
+
+            .green  { color: #1a8a3a; }
+            .red    { color: #cc2200; }
+            .orange { color: #9a6f00; }
+        }
+    }
+
+    .program-delete {
+    font-family: $font-family-primary;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    p {
+        font-size: 14px;
+        color: $font-color;
+        margin: 0;
+        line-height: 1.5;
+
+        strong { color: #333; }
+    }
+
+    .delete-warning {
+        font-size: 13px;
+        color: #cc2200;
+        background-color: #fff0f0;
+        padding: 10px 14px;
+        border-radius: 8px;
+        border: 1px solid #ffcccc;
+    }
+
+    .delete-error {
+        font-size: 13px;
+        color: #cc0000;
+        background-color: #fff0f0;
+        padding: 8px 12px;
+        border-radius: 8px;
+    }
+
+    .delete-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        padding-top: 8px;
+
+        button {
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.25s ease all;
+            border: none;
+
+            &.btn-cancel {
+                background-color: $bg-color;
+                color: $font-color;
+                border: 1px solid rgba(207, 207, 207, 0.7);
+                &:hover { background-color: rgba(207, 207, 207, 0.3); }
+            }
+
+            &.btn-delete {
+                background-color: #cc2200;
+                color: white;
+                &:hover { opacity: 0.85; }
+                &:disabled { opacity: 0.6; cursor: not-allowed; }
+            }
+        }
+    }
+}
+
+.pd-supplements {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        h5 {
+            font-size: 13px;
+            font-weight: 600;
+            color: $font-color;
+            margin: 0;
+        }
+
+        .pd-supplement-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: $font-color;
+            padding: 6px 10px;
+            background-color: $bg-color;
+            border-radius: 6px;
+        }
+    }
+}
+
+.action-pop-up-container {
+    .delete-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        padding-top: 8px;
+
+        button {
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.25s ease all;
+            border: none;
+
+            &.btn-cancel {
+                background-color: $bg-color;
+                color: $font-color;
+                border: 1px solid rgba(207, 207, 207, 0.7);
+                &:hover { background-color: rgba(207, 207, 207, 0.3); }
+            }
+
+            &.btn-delete {
+                background-color: #cc2200;
+                color: white;
+                &:hover { opacity: 0.85; }
+                &:disabled { opacity: 0.6; cursor: not-allowed; }
+            }
+        }
+    }
+}

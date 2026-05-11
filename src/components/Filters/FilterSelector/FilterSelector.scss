@@ -29,7 +29,7 @@
       background-color: transparent;
 
       &:hover,
-      &:active {
+      &.active {
         background-color: $navbar-active-font;
         color: $white-color;
       }

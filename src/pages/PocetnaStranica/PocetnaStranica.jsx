@@ -1,23 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './PocetnaStranica.scss'
 import Card from "../../components/Card/Card.jsx";
 import RecentUpcoming from "../../features/RecentUpcoming/RecentUpcoming.jsx";
 import RecentUpcomingTable from "../../components/Table/RecentUpcomingTable.jsx";
 import MonthlyChart from "../../components/Charts/MonthlyChart/MonthlyChart.jsx";
 
+import apiClient from "../../api/apiClient.jsx"; // koristi tvoju lokaciju
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers, faMoneyBill, faFileInvoice, faPlaneDeparture, faClipboardList, faArrowTrendDown } from "@fortawesome/free-solid-svg-icons";
 
 function PocetnaStranica() {
-  const stats = [
-    { title: "Aktivni programi", value: 1, icon: <FontAwesomeIcon icon={faPlaneDeparture} />, className: "programs" },
-    { title: "Ukupno putnika", value: 0, icon: <FontAwesomeIcon icon={faUsers} />, className: "passengers" },
-    { title: "Ukupno rezervacija", value: 0, icon: <FontAwesomeIcon icon={faClipboardList} />, className: "reservations" },
-    { title: "Ukupni prihodi", value: "40.00KM", icon: <FontAwesomeIcon icon={faMoneyBill} />, className: "profit" },
-    { title: "Ukupni rashodi", value: "30.00KM", icon: <FontAwesomeIcon icon={faArrowTrendDown} />, className: "expenses" },
-    { title: "Neplaćene fakture", value: "20.00KM", icon: <FontAwesomeIcon icon={faFileInvoice} />, className: "invoices" },
-  ];
+  const [stats, setStats] = useState([]);
 
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await apiClient.get("/dashboard/stats");
+        const data = response.data;
+
+        const mappedStats = [
+          { title: "Aktivni programi", value: data.activePrograms, icon: <FontAwesomeIcon icon={faPlaneDeparture} />, className: "programs" },
+          { title: "Ukupno putnika", value: data.totalPassengers, icon: <FontAwesomeIcon icon={faUsers} />, className: "passengers" },
+          { title: "Ukupno rezervacija", value: data.totalReservations, icon: <FontAwesomeIcon icon={faClipboardList} />, className: "reservations" },
+          { title: "Ukupni prihodi", value: `${data.revenue} KM`, icon: <FontAwesomeIcon icon={faMoneyBill} />, className: "profit" },
+          { title: "Ukupni rashodi", value: `${data.expenses} KM`, icon: <FontAwesomeIcon icon={faArrowTrendDown} />, className: "expenses" },
+          { title: "Neplaćene fakture", value: `${data.unpaidInvoices} KM`, icon: <FontAwesomeIcon icon={faFileInvoice} />, className: "invoices" },
+        ];
+
+        setStats(mappedStats);
+      } catch (error) {
+        console.error("Error fetching stats:", error);
+      }
+    };
+
+    fetchStats();
+  }, []);
 
   return (
     <div className="dashboard-container">
@@ -28,12 +46,12 @@ function PocetnaStranica() {
       </div>
       <div className="recent-upcoming-container">
         <div className="recent-container">
-          <RecentUpcoming title="Nadolazeći programi" showButton={true}>
+          <RecentUpcoming title="Nadolazeći programi" showButton={true} buttonLink="/programi">
             <RecentUpcomingTable />
           </RecentUpcoming>
         </div>
         <div className="upcoming-container">
-          <RecentUpcoming title="Nedavne rezervacije" showButton={true}>
+          <RecentUpcoming title="Nedavne rezervacije" showButton={true} buttonLink="/programi">
             <RecentUpcomingTable />
           </RecentUpcoming>
         </div>

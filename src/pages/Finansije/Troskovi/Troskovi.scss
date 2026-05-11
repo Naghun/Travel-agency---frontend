@@ -1,0 +1,411 @@
+@use '../../../styles/main' as *;
+
+.troskovi-container {
+    padding: 0px 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    // ── Custom header ──
+    .tr-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 10px 16px;
+        border-bottom: 1px solid rgba(207, 207, 207, 0.4);
+
+        .tr-title {
+            font-family: $font-family-primary;
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin: 0;
+        }
+
+        .tr-header-actions {
+            display: flex;
+            gap: 8px;
+
+            .tr-action-btn {
+                display: flex;
+                align-items: center;
+                gap: 7px;
+                padding: 9px 18px;
+                border-radius: 8px;
+                font-family: $font-family-primary;
+                font-size: 13px;
+                font-weight: 500;
+                cursor: pointer;
+                border: none;
+                transition: 0.2s ease;
+
+                &.tr-action-btn--pdf {
+                    background-color: #fff0e8;
+                    color: #cc5500;
+                    border: 1px solid rgba(204, 85, 0, 0.2);
+                    &:hover { background-color: #cc5500; color: white; }
+                }
+                &.tr-action-btn--excel {
+                    background-color: #e8fff0;
+                    color: #1a7a3a;
+                    border: 1px solid rgba(26, 122, 58, 0.2);
+                    &:hover { background-color: #1a7a3a; color: white; }
+                }
+                &.tr-action-btn--add {
+                    background-color: $navbar-active-font;
+                    color: white;
+                    &:hover { opacity: 0.85; transform: translateY(-1px); box-shadow: $shadow-intense; }
+                }
+            }
+        }
+    }
+
+    // ── Summary cards ──
+    .tr-summary {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin: 16px 0 0;
+
+        .tr-summary-card {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 18px 22px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: $shadow;
+            border-left: 4px solid transparent;
+
+            .tr-summary-label {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                font-family: $font-family-primary;
+                font-size: 11px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                color: rgba(74, 94, 122, 0.6);
+            }
+            .tr-summary-dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                flex-shrink: 0;
+            }
+            .tr-summary-amount {
+                font-family: $font-family-primary;
+                font-size: 20px;
+                font-weight: 700;
+                color: $font-color;
+            }
+            .tr-summary-sub {
+                font-family: $font-family-primary;
+                font-size: 12px;
+                color: rgba(74, 94, 122, 0.5);
+            }
+
+            &.tr-summary--total { border-left-color: #cc2200; .tr-summary-amount { color: #cc2200; } }
+            &.tr-summary--empty { opacity: 0.45; border-left-color: rgba(207,207,207,0.6); }
+        }
+    }
+
+    // ── Filters ──
+    .tr-filters {
+        display: flex;
+        gap: 12px;
+        padding: 14px 16px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: $shadow;
+        margin: 14px 0;
+        align-items: center;
+        flex-wrap: wrap;
+
+        select {
+            padding: 9px 14px;
+            border: 1px solid rgba(207, 207, 207, 0.7);
+            border-radius: 8px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            color: $font-color;
+            background-color: white;
+            outline: none;
+            cursor: pointer;
+            min-width: 180px;
+            transition: 0.2s ease;
+            &:focus { border-color: $navbar-active-font; }
+        }
+
+        .tr-date-range {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+
+            label {
+                font-family: $font-family-primary;
+                font-size: 12px;
+                font-weight: 500;
+                color: rgba(74, 94, 122, 0.6);
+            }
+
+            input[type="date"] {
+                padding: 8px 12px;
+                border: 1px solid rgba(207, 207, 207, 0.7);
+                border-radius: 8px;
+                font-family: $font-family-primary;
+                font-size: 13px;
+                color: $font-color;
+                background-color: white;
+                outline: none;
+                transition: 0.2s ease;
+                &:focus { border-color: $navbar-active-font; }
+            }
+        }
+    }
+
+    // ── Table ──
+    .tr-table-box {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: $shadow;
+        overflow-x: auto;
+    }
+
+    .tr-table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead tr { border-bottom: 2px solid rgba(207, 207, 207, 0.35); }
+
+        th {
+            padding: 13px 16px;
+            text-align: left;
+            font-family: $font-family-primary;
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(74, 94, 122, 0.6);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 13px 16px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            color: $font-color;
+            border-bottom: 1px solid rgba(233, 233, 233, 0.7);
+            vertical-align: middle;
+        }
+
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: rgba(224, 231, 255, 0.07); }
+
+        .tr-empty {
+            text-align: center;
+            padding: 48px;
+            color: rgba(74, 94, 122, 0.45);
+            font-size: 14px;
+        }
+    }
+
+    // ── Cell helpers ──
+    .tr-desc {
+        font-size: 13px;
+        font-weight: 500;
+        color: $font-color;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        max-width: 220px;
+    }
+
+    .tr-cat-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        white-space: nowrap;
+
+        .tr-cat-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+    }
+
+    .tr-amount {
+        font-weight: 700;
+        color: #cc2200;
+        white-space: nowrap;
+        .tr-currency { font-size: 11px; color: rgba(74,94,122,0.5); font-weight: 400; margin-left: 2px; }
+    }
+
+    .tr-vendor  { font-size: 13px; color: rgba(74, 94, 122, 0.7); }
+    .tr-receipt { font-size: 12px; color: rgba(74, 94, 122, 0.6); font-family: monospace; }
+    .tr-none    { color: rgba(74, 94, 122, 0.35); }
+
+    // ── Row actions ──
+    .tr-row-actions {
+        display: flex;
+        gap: 6px;
+
+        .tr-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            transition: 0.2s ease;
+
+            &.tr-btn--view   { background-color: #f0f0f5; color: $font-color; &:hover { background-color: $navbar-active-bg; color: $navbar-active-font; } }
+            &.tr-btn--edit   { background-color: #e8f4ff; color: #1a5a8a;     &:hover { background-color: #1a5a8a; color: white; } }
+            &.tr-btn--delete { background-color: #fff0f0; color: #cc2200;     &:hover { background-color: #cc2200; color: white; } }
+        }
+    }
+
+    // ── Form ──
+    .tr-form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        font-family: $font-family-primary;
+
+        .tr-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            &.required label::after { content: ' *'; color: #cc0000; }
+            label { font-size: 12px; font-weight: 500; color: $font-color; }
+
+            input, select, textarea {
+                padding: 9px 13px;
+                border: 1px solid rgba(207, 207, 207, 0.7);
+                border-radius: 8px;
+                font-family: $font-family-primary;
+                font-size: 13px;
+                color: $font-color;
+                background-color: $bg-color;
+                outline: none;
+                transition: 0.2s ease;
+                resize: vertical;
+                &:focus { border-color: $navbar-active-font; background-color: white; }
+                &::placeholder { color: rgba(74, 94, 122, 0.4); }
+            }
+            textarea { min-height: 60px; }
+        }
+
+        .tr-form-row {
+            display: flex;
+            gap: 12px;
+            .tr-form-group { flex: 1; }
+        }
+    }
+
+    // ── Actions (form + delete) ──
+    .tr-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(207, 207, 207, 0.4);
+
+        button {
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: 0.2s ease;
+
+            &.btn-cancel { background-color: $bg-color; color: $font-color; border: 1px solid rgba(207,207,207,0.7); &:hover { background-color: rgba(207,207,207,0.3); } }
+            &.btn-save   { background-color: $navbar-active-font; color: white; &:hover { opacity: 0.85; } &:disabled { opacity: 0.6; cursor: not-allowed; } }
+            &.btn-delete { background-color: #cc2200; color: white; &:hover { opacity: 0.85; } &:disabled { opacity: 0.6; cursor: not-allowed; } }
+        }
+    }
+
+    // ── Error ──
+    .tr-error {
+        padding: 10px 14px;
+        background-color: #fff0f0;
+        border: 1px solid #ffcccc;
+        border-radius: 8px;
+        font-size: 13px;
+        color: #cc0000;
+        font-family: $font-family-primary;
+    }
+
+    // ── Delete ──
+    .tr-delete {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        font-family: $font-family-primary;
+        p { font-size: 14px; color: $font-color; margin: 0; }
+    }
+
+    // ── Detail ──
+    .tr-detail {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        font-family: $font-family-primary;
+
+        .tr-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            > div {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                span:last-child { font-size: 14px; color: $font-color; font-weight: 500; }
+            }
+        }
+
+        .tr-detail-row {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            p { font-size: 13px; color: $font-color; margin: 0; line-height: 1.5; }
+        }
+
+        .tr-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(74, 94, 122, 0.55);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .tr-amount-big {
+            font-size: 20px !important;
+            font-weight: 700 !important;
+            color: #cc2200 !important;
+        }
+
+        .tr-detail-meta {
+            display: flex;
+            gap: 16px;
+            padding: 10px 14px;
+            background-color: $bg-color;
+            border-radius: 8px;
+            font-size: 12px;
+            color: rgba(74, 94, 122, 0.6);
+        }
+    }
+}

@@ -1,0 +1,109 @@
+@use '../../styles/main' as *;
+
+.passenger-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .form-error {
+        padding: 10px 14px;
+        background-color: #fff0f0;
+        border: 1px solid #ffcccc;
+        border-radius: 8px;
+        font-family: $font-family-primary;
+        font-size: 13px;
+        color: #cc0000;
+    }
+
+    .form-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        h5 {
+            font-family: $font-family-primary;
+            font-size: 13px;
+            font-weight: 600;
+            color: $navbar-active-font;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(207, 207, 207, 0.4);
+            margin: 0;
+        }
+    }
+
+    .form-row {
+        display: flex;
+        gap: 12px;
+        .form-group { flex: 1; }
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        label {
+            font-family: $font-family-primary;
+            font-size: 12px;
+            font-weight: 500;
+            color: $font-color;
+        }
+
+        &.required label::after { content: ' *'; color: #cc0000; }
+
+        input, select, textarea {
+            padding: 9px 13px;
+            border: 1px solid rgba(207, 207, 207, 0.7);
+            border-radius: 8px;
+            font-family: $font-family-primary;
+            font-size: 13px;
+            color: $font-color;
+            background-color: $bg-color;
+            outline: none;
+            transition: 0.25s ease all;
+            resize: vertical;
+
+            &:focus {
+                border-color: $navbar-active-font;
+                background-color: white;
+                box-shadow: 0 0 0 3px rgba(67, 70, 216, 0.08);
+            }
+            &::placeholder { color: rgba(74, 94, 122, 0.4); }
+        }
+        textarea { min-height: 70px; }
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(207, 207, 207, 0.4);
+
+        button {
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.25s ease all;
+            border: none;
+
+            &.btn-cancel {
+                background-color: $bg-color;
+                color: $font-color;
+                border: 1px solid rgba(207, 207, 207, 0.7);
+                &:hover { background-color: rgba(207, 207, 207, 0.3); }
+            }
+            &.btn-save {
+                background-color: $navbar-active-font;
+                color: white;
+                &:hover { opacity: 0.85; transform: translateY(-1px); }
+                &:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+            }
+        }
+    }
+}

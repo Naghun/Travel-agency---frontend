@@ -1,0 +1,180 @@
+@use '../../styles/main' as *;
+
+.reservation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .form-error {
+        padding: 10px 14px;
+        background-color: #fff0f0;
+        border: 1px solid #ffcccc;
+        border-radius: 8px;
+        font-family: $font-family-primary;
+        font-size: 13px;
+        color: #cc0000;
+    }
+
+    .form-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        h5 {
+            font-family: $font-family-primary;
+            font-size: 13px;
+            font-weight: 600;
+            color: $navbar-active-font;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(207, 207, 207, 0.4);
+            margin: 0;
+        }
+    }
+
+    .form-row {
+        display: flex;
+        gap: 12px;
+        .form-group { flex: 1; }
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        label {
+            font-family: $font-family-primary;
+            font-size: 12px;
+            font-weight: 500;
+            color: $font-color;
+        }
+
+        &.required label::after { content: ' *'; color: #cc0000; }
+
+        input, select, textarea {
+            padding: 9px 13px;
+            border: 1px solid rgba(207, 207, 207, 0.7);
+            border-radius: 8px;
+            font-family: $font-family-primary;
+            font-size: 13px;
+            color: $font-color;
+            background-color: $bg-color;
+            outline: none;
+            transition: 0.25s ease all;
+            resize: vertical;
+
+            &:focus {
+                border-color: $navbar-active-font;
+                background-color: white;
+                box-shadow: 0 0 0 3px rgba(67, 70, 216, 0.08);
+            }
+            &::placeholder { color: rgba(74, 94, 122, 0.4); }
+        }
+        textarea { min-height: 70px; }
+    }
+
+    .autocomplete-wrapper {
+        position: relative;
+
+        input {
+            width: 100%;
+            padding: 9px 13px;
+            border: 1px solid rgba(207, 207, 207, 0.7);
+            border-radius: 8px;
+            font-family: $font-family-primary;
+            font-size: 13px;
+            color: $font-color;
+            background-color: $bg-color;
+            outline: none;
+            &:focus { border-color: $navbar-active-font; background-color: white; }
+            &::placeholder { color: rgba(74, 94, 122, 0.4); }
+        }
+
+        .autocomplete-list {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            background-color: white;
+            border: 1px solid rgba(207, 207, 207, 0.7);
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            list-style: none;
+            padding: 4px 0;
+            margin: 0;
+            z-index: 200;
+            max-height: 200px;
+            overflow-y: auto;
+
+            li {
+                padding: 10px 14px;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                transition: 0.2s ease;
+
+                strong { font-size: 14px; color: #333; }
+                span   { font-size: 12px; color: $font-color; }
+
+                &:hover { background-color: $navbar-active-bg; }
+            }
+        }
+
+        .autocomplete-selected {
+            display: block;
+            margin-top: 5px;
+            font-family: $font-family-primary;
+            font-size: 12px;
+            color: #1a8a3a;
+            font-weight: 500;
+        }
+    }
+
+    .reservation-program-info {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 14px;
+        background-color: $navbar-active-bg;
+        border-radius: 8px;
+        font-family: $font-family-primary;
+        font-size: 13px;
+        color: $navbar-active-font;
+
+        strong { font-weight: 600; }
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(207, 207, 207, 0.4);
+
+        button {
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.25s ease all;
+            border: none;
+
+            &.btn-cancel {
+                background-color: $bg-color;
+                color: $font-color;
+                border: 1px solid rgba(207, 207, 207, 0.7);
+                &:hover { background-color: rgba(207, 207, 207, 0.3); }
+            }
+            &.btn-save {
+                background-color: $navbar-active-font;
+                color: white;
+                &:hover { opacity: 0.85; transform: translateY(-1px); }
+                &:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+            }
+        }
+    }
+}

@@ -1,0 +1,63 @@
+@use '../../styles/main' as *;
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.2s ease;
+
+    .modal-box {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+        width: 880px;
+        max-width: 95vw;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        animation: slideUp 0.25s ease;
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 28px;
+            border-bottom: 1px solid rgba(207, 207, 207, 0.4);
+
+            h4 {
+                font-family: $font-family-primary;
+                font-size: 18px;
+                font-weight: 600;
+                color: $font-color;
+                margin: 0;
+            }
+
+            .modal-close {
+                font-size: 20px;
+                cursor: pointer;
+                color: $font-color;
+                transition: 0.2s ease;
+                &:hover { color: $navbar-active-font; }
+            }
+        }
+
+        .modal-body {
+            padding: 24px 28px;
+            overflow-y: auto;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}

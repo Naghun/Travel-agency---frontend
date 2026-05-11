@@ -1,0 +1,311 @@
+@use '../../../styles/main' as *;
+
+.dugovanja-container {
+    padding: 0px 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    // ── Custom header ──
+    .dug-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 10px 16px;
+
+        .dug-title {
+            font-family: $font-family-primary;
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin: 0;
+        }
+
+        .dug-header-actions {
+            display: flex;
+            gap: 8px;
+
+            .dug-action-btn {
+                display: flex;
+                align-items: center;
+                gap: 7px;
+                padding: 9px 18px;
+                border-radius: 8px;
+                font-family: $font-family-primary;
+                font-size: 13px;
+                font-weight: 500;
+                cursor: pointer;
+                border: none;
+                transition: 0.2s ease;
+
+                &.dug-action-btn--preview {
+                    background-color: $bg-color;
+                    color: $font-color;
+                    border: 1px solid rgba(207, 207, 207, 0.7);
+                    &:hover { background-color: rgba(207,207,207,0.3); }
+                }
+                &.dug-action-btn--pdf {
+                    background-color: #fff0e8;
+                    color: #cc5500;
+                    border: 1px solid rgba(204, 85, 0, 0.2);
+                    &:hover { background-color: #cc5500; color: white; }
+                }
+                &.dug-action-btn--excel {
+                    background-color: #e8fff0;
+                    color: #1a7a3a;
+                    border: 1px solid rgba(26, 122, 58, 0.2);
+                    &:hover { background-color: #1a7a3a; color: white; }
+                    &:disabled { opacity: 0.6; cursor: not-allowed; }
+                }
+            }
+        }
+    }
+
+    // ── Summary cards ──
+    .dug-summary {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-bottom: 14px;
+
+        .dug-summary-card {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 18px 22px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: $shadow;
+            border-left: 4px solid transparent;
+
+            .dug-summary-label {
+                font-family: $font-family-primary;
+                font-size: 11px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                color: rgba(74, 94, 122, 0.6);
+            }
+            .dug-summary-amount {
+                font-family: $font-family-primary;
+                font-size: 22px;
+                font-weight: 700;
+                color: $font-color;
+            }
+            .dug-summary-sub {
+                font-family: $font-family-primary;
+                font-size: 12px;
+                color: rgba(74, 94, 122, 0.5);
+            }
+
+            &.dug-summary--total { border-left-color: $navbar-active-font; .dug-summary-amount { color: $navbar-active-font; } }
+            &.dug-summary--paid  { border-left-color: #1a8a3a;            .dug-summary-amount { color: #1a8a3a; } }
+            &.dug-summary--debt  { border-left-color: #cc2200;            .dug-summary-amount { color: #cc2200; } }
+        }
+    }
+
+    // ── Tabs ──
+    .dug-tabs {
+        display: flex;
+        gap: 4px;
+        margin-bottom: 0;
+
+        button {
+            padding: 10px 22px;
+            border: 1px solid rgba(207, 207, 207, 0.7);
+            border-radius: 8px;
+            background-color: white;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            font-weight: 500;
+            color: $font-color;
+            cursor: pointer;
+            transition: 0.2s ease;
+
+            &:hover { border-color: $navbar-active-font; color: $navbar-active-font; }
+            &.active { background-color: $navbar-active-font; border-color: $navbar-active-font; color: white; }
+        }
+    }
+
+    // ── Filters ──
+    .dug-filters {
+        display: flex;
+        gap: 12px;
+        padding: 14px 16px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: $shadow;
+        margin: 14px 0;
+        align-items: center;
+
+        select {
+            padding: 9px 14px;
+            border: 1px solid rgba(207, 207, 207, 0.7);
+            border-radius: 8px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            color: $font-color;
+            background-color: white;
+            outline: none;
+            cursor: pointer;
+            min-width: 200px;
+            transition: 0.2s ease;
+            &:focus { border-color: $navbar-active-font; }
+        }
+
+        .dug-search {
+            position: relative;
+            flex: 1;
+            max-width: 320px;
+
+            .dug-search-icon {
+                position: absolute;
+                left: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: rgba(74, 94, 122, 0.4);
+                font-size: 13px;
+                pointer-events: none;
+            }
+
+            input {
+                width: 100%;
+                padding: 9px 13px 9px 34px;
+                border: 1px solid rgba(207, 207, 207, 0.7);
+                border-radius: 8px;
+                font-family: $font-family-primary;
+                font-size: 14px;
+                color: $font-color;
+                background-color: white;
+                outline: none;
+                transition: 0.2s ease;
+                box-sizing: border-box;
+                &:focus { border-color: $navbar-active-font; }
+                &::placeholder { color: rgba(74, 94, 122, 0.4); }
+            }
+        }
+    }
+
+    // ── Table ──
+    .dug-table-box {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: $shadow;
+        overflow-x: auto;
+    }
+
+    .dug-table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead tr { border-bottom: 2px solid rgba(207, 207, 207, 0.35); }
+
+        th {
+            padding: 13px 16px;
+            text-align: left;
+            font-family: $font-family-primary;
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(74, 94, 122, 0.6);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 14px 16px;
+            font-family: $font-family-primary;
+            font-size: 14px;
+            color: $font-color;
+            border-bottom: 1px solid rgba(233, 233, 233, 0.7);
+            vertical-align: middle;
+        }
+
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr:hover { background-color: rgba(224, 231, 255, 0.07); }
+
+        .dug-empty {
+            text-align: center;
+            padding: 48px;
+            color: rgba(74, 94, 122, 0.45);
+            font-size: 14px;
+        }
+    }
+
+    // ── Cell helpers ──
+    .dug-putnik {
+        font-weight: 600;
+        color: $navbar-active-font;
+    }
+
+    .dug-program-cell {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        .dug-program-name { font-size: 13px; font-weight: 600; color: $navbar-active-font; }
+        .dug-destination  { font-size: 12px; color: rgba(74, 94, 122, 0.6); }
+    }
+
+    .dug-amount  { font-weight: 600; color: $font-color; }
+    .dug-paid    { font-weight: 600; color: #1a8a3a; }
+    .dug-contact { font-size: 13px; color: rgba(74, 94, 122, 0.7); }
+    .dug-debt    { font-weight: 700; color: #cc2200; }
+
+    .dug-owes {
+        font-weight: 700;
+        &.dug-owes--has   { color: #cc2200; }
+        &.dug-owes--clear { color: #1a8a3a; }
+    }
+
+    // ── Progress bar ──
+    .dug-bar-cell {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 130px;
+
+        .dug-bar-pct {
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(74, 94, 122, 0.7);
+            width: 34px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .dug-bar-track {
+            flex: 1;
+            height: 6px;
+            background-color: #e8e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+
+            .dug-bar-fill {
+                height: 100%;
+                border-radius: 4px;
+                transition: width 0.4s ease;
+            }
+        }
+    }
+
+    // ── Status badges ──
+    .dug-status-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .dug-status-badge {
+        display: inline-block;
+        padding: 3px 9px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 600;
+        white-space: nowrap;
+
+        &.dug--unpaid    { background-color: #fff8e0; color: #9a6f00; }
+        &.dug--partial   { background-color: #e8f4ff; color: #1a5a8a; }
+        &.dug--paid      { background-color: #e8fff0; color: #1a8a3a; }
+        &.dug--cancelled { background-color: #fff0f0; color: #cc2200; }
+    }
+}
