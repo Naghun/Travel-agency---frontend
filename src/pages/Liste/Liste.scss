@@ -38,7 +38,7 @@
         }
 
         select {
-            width: 340px;
+            width: 440px;
             padding: 10px 14px;
             border: 1px solid rgba(207, 207, 207, 0.8);
             border-radius: 8px;
@@ -49,13 +49,13 @@
             outline: none;
             cursor: pointer;
             transition: 0.25s ease all;
-            appearance: auto;
-
+            appearance: none;
             &:focus {
                 border-color: $navbar-active-font;
                 box-shadow: 0 0 0 3px rgba(67, 70, 216, 0.08);
             }
         }
+
     }
 
     // Tab buttons

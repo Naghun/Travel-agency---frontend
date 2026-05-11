@@ -49,7 +49,7 @@ function ProgramDetails({ programId }) {
         </div>
         <div className="pd-item">
           <span className="pd-label">Putnici</span>
-          <span className="pd-value">{program.confirmed_reservations ?? 0} / {program.max_participants ?? '∞'}</span>
+          <span className="pd-value">{program.confirmed_reservations ?? 0} / {program.max_participants ?? 'NN'}</span>
         </div>
         {program.meeting_point && (
           <div className="pd-item">

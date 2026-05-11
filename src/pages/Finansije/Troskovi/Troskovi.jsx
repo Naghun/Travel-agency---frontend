@@ -361,7 +361,7 @@ function Troskovi() {
                   </td>
                   <td>{t.program_name || '—'}</td>
                   <td><span className="tr-vendor">{t.vendor || '—'}</span></td>
-                  <td><span className="tr-amount">{fmtKM(t.amount)} <span className="tr-currency">{t.currency !== 'BAM' ? t.currency : ''}</span></span></td>
+                  <td><span className="tr-amount">{fmtKM(t.amount)} </span></td>
                   <td><span className="tr-receipt">{t.receipt_number || '—'}</span></td>
                   <td>
                     <div className="tr-row-actions">
